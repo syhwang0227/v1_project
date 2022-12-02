@@ -1,9 +1,9 @@
-from typing import Optional
-
 from fastapi import FastAPI
+from starlette.responses import RedirectResponse
 
-app = FastAPI()
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+app = FastAPI(title='Classification')
+
+@app.get('/', include_in_schema=False)
+async def index():
+    return RedirectResponse(url="/docs")
